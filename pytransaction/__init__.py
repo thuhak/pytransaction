@@ -1,8 +1,12 @@
 from collections import deque
 from copy import deepcopy
+# author: thuhak.zhou@nio.com
 
 
 class Transaction(object):
+    """
+    run revert functions when exception occurs in context
+    """
     def __init__(self):
         self.stack = deque()
 
@@ -32,5 +36,3 @@ class Transaction(object):
     def rollback(self):
         for revert_func, args, kwargs in self.stack:
             revert_func(*args, **kwargs)
-
-
